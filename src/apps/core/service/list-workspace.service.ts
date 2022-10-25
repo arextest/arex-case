@@ -8,6 +8,6 @@ export class ListWorkspaceService {
         private workspaceModel: Model<WorkspaceDocument>,
     ) {}
     async invoke(reqBody) {
-        return this.workspaceModel.find({})
+        return this.workspaceModel.find({age:18})
     }
 }

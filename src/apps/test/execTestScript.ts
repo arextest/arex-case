@@ -45,6 +45,7 @@ class Pw {
     this.caseResult.children[this.firstLvIndex].expectResults[
       this.secondLvIndex
     ].rightValue = rightValue;
+    // a
     if (
       this.caseResult.children[this.firstLvIndex].expectResults[
         this.secondLvIndex
@@ -61,7 +62,41 @@ class Pw {
         this.secondLvIndex
       ].status = 'fail';
     }
-
+    // b
+    this.caseResult.children[this.firstLvIndex].expectResults[
+      this.secondLvIndex
+    ].message = `Expected ${
+      this.caseResult.children[this.firstLvIndex].expectResults[
+        this.secondLvIndex
+      ].leftValue
+    } to be ${
+      this.caseResult.children[this.firstLvIndex].expectResults[
+        this.secondLvIndex
+      ].rightValue
+    }'`;
+  }
+  toBeLevel2xx(rightValue) {
+    this.caseResult.children[this.firstLvIndex].expectResults[
+      this.secondLvIndex
+    ].rightValue = rightValue;
+    // a
+    if (
+      this.caseResult.children[this.firstLvIndex].expectResults[
+        this.secondLvIndex
+      ].leftValue > 200 &&
+      this.caseResult.children[this.firstLvIndex].expectResults[
+        this.secondLvIndex
+      ].leftValue < 299
+    ) {
+      this.caseResult.children[this.firstLvIndex].expectResults[
+        this.secondLvIndex
+      ].status = 'pass';
+    } else {
+      this.caseResult.children[this.firstLvIndex].expectResults[
+        this.secondLvIndex
+      ].status = 'fail';
+    }
+    // b
     this.caseResult.children[this.firstLvIndex].expectResults[
       this.secondLvIndex
     ].message = `Expected ${
@@ -81,6 +116,7 @@ export function execTestScript(code, response) {
     const sandbox = {
       pw: pw,
       console: console,
+      JSON:JSON
     };
     //必须传入第二个参数，sandbox或context
     vm.runInNewContext(code, sandbox);
